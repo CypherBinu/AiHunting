@@ -1,9 +1,22 @@
-# Claude Code (Custom Setup)
+# 🎯 AI HUNTING SETUP
 
-![Node.js Version](https://img.shields.io/badge/Node.js-18%2B-brightgreen?style=flat-square)
-[![npm version](https://img.shields.io/npm/v/@anthropic-ai/claude-code.svg?style=flat-square)](https://www.npmjs.com/package/@anthropic-ai/claude-code)
+Hey guys, it's **cypherbinu** 👋
 
-Claude Code is an agentic coding tool that runs directly in your terminal. It understands your codebase and can handle routine tasks, explain complex code, and manage git workflows via natural language commands.
+This repository is very helpful for bug bounty hunters who want to use AI for their hunting workflow without wasting money on expensive AI tokens.
+
+I've shared some useful and secret methodologies here that can help you use AI at a much lower cost while improving your hunting efficiency.
+
+With the right AI setup, you can:
+
+- ⚡ Speed up your recon and analysis
+- 🔎 Find potential bugs faster
+- 🤖 Use AI effectively during your hunting workflow
+- 💰 Reduce unnecessary AI token costs
+- 🧠 Improve your overall bug bounty workflow
+
+The goal is simple: **spend less on AI and hunt smarter.**
+
+> Use these methods only on programs and targets where you have permission to test.
 
 ---
 
@@ -272,3 +285,11 @@ claude
 | Nghimmo | `https://api.nghimmo.com` |
 
 Both methods use the same Claude Code environment variables. Simply select the provider you want and configure its **Base URL**, **API key**, and **model**.
+
+---
+
+## 🏹 Happy Hunting
+
+**Hunt smarter. Spend less. Find bugs faster.**
+
+— **cypherbinu**
