@@ -17,14 +17,6 @@ This is a **comprehensive resource for AI-powered bug bounty hunting**. Here you
 
 **New hunting skills and methodologies are being added regularly**, so make sure to check back and explore the different directories and files in this repository to find useful techniques for your specific hunting goals.
 
-With the right AI setup, you can:
-
-- ⚡ Speed up your recon and analysis
-- 🔎 Find potential bugs faster
-- 🤖 Use AI effectively during your hunting workflow
-- 💰 Reduce unnecessary AI token costs
-- 🧠 Improve your overall bug bounty workflow
-
 The goal is simple: **spend less on AI and hunt smarter.**
 
 > Use these methods only on programs and targets where you have permission to test.
