@@ -172,46 +172,7 @@ source ~/.bashrc
 
 ---
 
-# 🔄 Switching Between AgentRouter and Nghimmo
 
-Claude Code uses the following environment variables:
-
-```text
-ANTHROPIC_BASE_URL
-ANTHROPIC_AUTH_TOKEN
-ANTHROPIC_MODEL
-CLAUDE_CODE_USE_AUTH_TOKEN
-```
-
-To switch from **AgentRouter** to **Nghimmo**, change the Base URL and API key.
-
-### AgentRouter
-
-```bash
-export ANTHROPIC_BASE_URL="https://agentrouter.org"
-export ANTHROPIC_AUTH_TOKEN="YOUR_AGENTROUTER_API_KEY"
-```
-
-### Nghimmo
-
-```bash
-export ANTHROPIC_BASE_URL="https://api.nghimmo.com"
-export ANTHROPIC_AUTH_TOKEN="YOUR_NGHIMMO_API_KEY"
-```
-
-Then reload your shell:
-
-```bash
-source ~/.bashrc
-```
-
-or:
-
-```bash
-source ~/.zshrc
-```
-
----
 
 # 🤖 Model Configuration
 
