@@ -15,7 +15,7 @@ This is a **comprehensive resource for AI-powered bug bounty hunting**. Here you
 - 💡 **Different hunting skills and techniques** to improve your workflow
 - 🤖 **AI integration examples** for various security testing scenarios
 
-**New hunting skills and methodologies are being added regularly**, so make sure to check back and explore the different directories and files in this repository to find useful techniques for your specific hunting needs.
+**New hunting skills and methodologies are being added regularly**, so make sure to check back and explore the different directories and files in this repository to find useful techniques for your specific hunting goals.
 
 With the right AI setup, you can:
 
@@ -97,6 +97,23 @@ echo 'export CLAUDE_CODE_USE_AUTH_TOKEN="true"' >> ~/.bashrc
 
 source ~/.bashrc
 ```
+
+---
+
+## 📝 AgentRouter — Demo Configuration Example
+
+Here's a complete demo configuration (using placeholder values):
+
+```bash
+# Added by AgentRouter CLI installer
+export ANTHROPIC_BASE_URL="https://agentrouter.org"
+export ANTHROPIC_AUTH_TOKEN="sk-demo1234567890abcdefghijklmnopqr"
+export ANTHROPIC_MODEL="deepseek-v4-flash"
+export CLAUDE_CODE_USE_AUTH_TOKEN="true"
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"
+```
+
+> ⚠️ **Important:** Replace `sk-demo1234567890abcdefghijklmnopqr` with your **actual AgentRouter API key**. Never commit real keys to version control.
 
 ---
 
@@ -256,6 +273,7 @@ Use placeholders such as:
 ```text
 YOUR_AGENTROUTER_API_KEY
 YOUR_NGHIMMO_API_KEY
+sk-demo1234567890abcdefghijklmnopqr
 ```
 
 instead of exposing your real API key.
