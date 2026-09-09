@@ -327,6 +327,8 @@ Both methods use the same Claude Code environment variables. Simply select the p
 
 — **cypherbinu**
 
+**Follow me on Twitter:** [@CypherBinu](https://x.com/CypherBinu)
+
 ---
 
 ## 💰 Get Tokens
