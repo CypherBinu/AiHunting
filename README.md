@@ -297,3 +297,15 @@ Both methods use the same Claude Code environment variables. Simply select the p
 **Hunt smarter. Spend less. Find bugs faster.**
 
 — **cypherbinu**
+
+---
+
+## 💰 Get Tokens
+
+![Buy Tokens](buytokenbot.png)
+
+**Join our Telegram Bot:** [FatBunny Hub Bot](https://t.me/FatBunny_Hub_bot)
+
+Get affordable tokens and support for your AI hunting journey!
+
+---
