@@ -100,9 +100,9 @@ source ~/.bashrc
 
 ---
 
-## 📝 AgentRouter — Demo Configuration Example
+## 📝 AgentRouter Deepseek configuration
 
-Here's a complete demo configuration (using placeholder values):
+Here's a complete  Deepseek configurationn (using placeholder values):
 
 ```bash
 # Added by AgentRouter CLI installer
