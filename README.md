@@ -46,6 +46,8 @@ Choose the method you want to use and follow the corresponding setup instruction
 
 AgentRouter allows Claude Code to connect through a custom API endpoint.
 
+📖 **Documentation:** [AgentRouter API](https://agentrouter.org)
+
 ## 🪟 Windows — Command Prompt / PowerShell
 
 Run:
@@ -90,6 +92,8 @@ source ~/.bashrc
 # 🔹 Method 2 — Nghimmo API
 
 Nghimmo provides an Anthropic-compatible API endpoint that can be used with Claude Code.
+
+📖 **Documentation:** [Nghimmo API Guide](https://api.nghimmo.com/huongdan)
 
 ### Base URL
 
@@ -279,10 +283,10 @@ claude
 
 ## 📖 Summary
 
-| Provider | Base URL |
-|---|---|
-| AgentRouter | `https://agentrouter.org` |
-| Nghimmo | `https://api.nghimmo.com` |
+| Provider | Base URL | Documentation |
+|---|---|---|
+| AgentRouter | `https://agentrouter.org` | [API Link](https://agentrouter.org) |
+| Nghimmo | `https://api.nghimmo.com` | [API Guide](https://api.nghimmo.com/huongdan) |
 
 Both methods use the same Claude Code environment variables. Simply select the provider you want and configure its **Base URL**, **API key**, and **model**.
 
