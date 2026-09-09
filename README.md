@@ -6,6 +6,17 @@ This repository is very helpful for bug bounty hunters who want to use AI for th
 
 I've shared some useful and secret methodologies here that can help you use AI at a much lower cost while improving your hunting efficiency.
 
+## 📚 About This Repository
+
+This is a **comprehensive resource for AI-powered bug bounty hunting**. Here you'll find:
+
+- 🔧 **Setup guides** for configuring Claude Code with various API providers
+- 🎯 **Hunting methodologies** optimized for efficiency and cost reduction
+- 💡 **Different hunting skills and techniques** to improve your workflow
+- 🤖 **AI integration examples** for various security testing scenarios
+
+**New hunting skills and methodologies are being added regularly**, so make sure to check back and explore the different directories and files in this repository to find useful techniques for your specific hunting needs.
+
 With the right AI setup, you can:
 
 - ⚡ Speed up your recon and analysis
