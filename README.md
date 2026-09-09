@@ -176,6 +176,13 @@ source ~/.bashrc
 
 # 🤖 Model Configuration
 
+> **Note:** With AgentRouter, you can change the model directly.  
+> With Nightmare API, you can't simply switch models.
+>
+> If you want to use **Claude Opus, DeepSeek, OpenAI**, or other supported models, you need to buy the corresponding tokens from the **Nightmare Telegram Bot** and then use the token according to the model you selected.
+>
+> ![Buy Tokens](buytokenbot.png)
+
 The model can be changed using:
 
 ```bash
