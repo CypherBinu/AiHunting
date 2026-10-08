@@ -27,5 +27,26 @@ npm install -g @anthropic-ai/claude-code
 > **Note:** Use `sudo` on Linux/macOS if you encounter permission errors.
 
 ---
+## 🔑 AI API Providers & Gateways
+
+- **AgentRouter** — Multi-model API gateway  
+  🔗 [Register](https://agentrouter.org/register?aff=JXHC)  
+  🎁 GitHub login & available signup credits  
+  🤖 Multiple AI models through one API
+
+- **FatBunny Hub** — Cheap AI API access via Telegram  
+  🤖 `@FatBunny_Hub_bot`  
+  💰 Cheap API tokens & multiple AI models
+
+- **KiraAI** — Low-cost AI API access  
+  🔗 [Register](https://kiraai.vn/?ref=cypherbb)  
+  🎁 Signup bonus  
+  📅 Daily check-in rewards  
+  🔑 API token available
+
+- **HackWithClaude** — Affordable access to AI models  
+  🔗 [Register](https://hackwithclaude.com/?ref=671b19d2)  
+  🔑 API token access  
+  🤖 Multiple AI models
 
 
