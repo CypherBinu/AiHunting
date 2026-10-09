@@ -49,4 +49,49 @@ npm install -g @anthropic-ai/claude-code
   🔑 API token access  
   🤖 Multiple AI models
 
+  ---
+  ## 🤖 AgentRouter + Claude Code Setup
+
+  ### 🐧 Linux (Bash / Zsh)
+
+```bash
+# For Zsh (Default on Kali/Ubuntu):
+echo 'export ANTHROPIC_BASE_URL="https://agentrouter.org"' >> ~/.zshrc
+echo 'export ANTHROPIC_AUTH_TOKEN="YOUR_AGENTROUTER_API_KEY"' >> ~/.zshrc
+echo 'export ANTHROPIC_MODEL="claude-opus-4-6"' >> ~/.zshrc
+echo 'export CLAUDE_CODE_USE_AUTH_TOKEN="true"' >> ~/.zshrc
+source ~/.zshrc
+
+# For Bash:
+# Replace ~/.zshrc with ~/.bashrc in the commands above
+# and run: source ~/.bashrc
+
+# Added by AgentRouter CLI installer
+export ANTHROPIC_BASE_URL="https://agentrouter.org"
+export ANTHROPIC_AUTH_TOKEN="YOUR_AGENTROUTER_API_KEY"
+export ANTHROPIC_MODEL="deepseek-v4-flash"
+export CLAUDE_CODE_USE_AUTH_TOKEN="true"
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"
+
+```
+> **Note:** Set `ANTHROPIC_MODEL` according to the model available in your AgentRouter account. Model IDs can change, so check the latest AgentRouter documentation/model list before configuring it. The configuration above follows the current AgentRouter Claude Code documentation.
+---
+### 🐰 FatBunny Hub
+
+Cheap AI API access via Telegram.
+
+🤖 `@FatBunny_Hub_bot`  
+💰 Cheap API tokens & multiple AI models
+
+#### ⚙️ Setup
+
+1. Open `@FatBunny_Hub_bot` on Telegram.
+2. Choose the required AI model/API and purchase the required token.
+3. After purchase, the bot provides the **API documentation**.
+4. Open the provided documentation to find the **API endpoint, API key/token, supported models, and usage examples**.
+5. Copy the API key/token and configure it in your AI tool according to the provided documentation.
+6. Test the API and start using the selected model.
+
+![FatBunny Hub API Setup](https://raw.githubusercontent.com/CypherBinu/AiHunting/main/buytokenbot.png)
+
 
