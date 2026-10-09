@@ -94,4 +94,9 @@ Cheap AI API access via Telegram.
 
 ![FatBunny Hub API Setup](https://raw.githubusercontent.com/CypherBinu/AiHunting/main/buytokenbot.png)
 
+---
+### 🤖 KiraAI + Claude Code Setup
+
+#### 🐧 Linux (Bash / Zsh)
+
 
