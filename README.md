@@ -123,19 +123,6 @@ source ~/.zshrc
 
 To make the variables persistent, append them to your shell configuration file (`.bashrc` or `.zshrc`).
 
-**OpenAI-Compatible API Configuration:**
-
-```bash
-# For Zsh:
-echo 'export OPENAI_BASE_URL="https://api.hackwithclaude.com/v1"' >> ~/.zshrc
-echo 'export OPENAI_API_KEY="YOUR_HACKWITHCLAUDE_API_KEY"' >> ~/.zshrc
-source ~/.zshrc
-
-# For Bash:
-# Replace ~/.zshrc with ~/.bashrc in the commands above
-# and run: source ~/.bashrc
-```
-
 **Claude Code Configuration (Anthropic-compatible endpoint required):**
 
 ```bash
