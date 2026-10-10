@@ -96,7 +96,63 @@ Cheap AI API access via Telegram.
 
 ---
 ### 🤖 KiraAI + Claude Code Setup
+### 🐧 Linux (Bash / Zsh)
 
-#### 🐧 Linux (Bash / Zsh)
+To make the variables persistent, append them to your shell configuration file (`.bashrc` or `.zshrc`).
 
+```bash
+# For Zsh (Default on Kali Linux):
+echo 'export ANTHROPIC_BASE_URL="https://kiraai.vn/api/v1"' >> ~/.zshrc
+echo 'export ANTHROPIC_AUTH_TOKEN="YOUR_KIRA_API_KEY"' >> ~/.zshrc
+echo 'export ANTHROPIC_MODEL="kira-mini-1.0"' >> ~/.zshrc
+echo 'export CLAUDE_CODE_USE_AUTH_TOKEN="true"' >> ~/.zshrc
+source ~/.zshrc
+
+# For Bash:
+# Replace ~/.zshrc with ~/.bashrc in the commands above
+# and run: source ~/.bashrc
+```
+
+> **Note:** Replace `YOUR_KIRA_API_KEY` with your actual KiraAI API key. Adjust `ANTHROPIC_MODEL` according to the model available in your KiraAI account and check the latest API documentation.
+
+---
+
+# ⚡ HackWithClaude + Claude Code Setup
+
+## 🐧 Linux (Bash / Zsh)
+
+To make the variables persistent, append them to your shell configuration file (`.bashrc` or `.zshrc`).
+
+**OpenAI-Compatible API Configuration:**
+
+```bash
+# For Zsh:
+echo 'export OPENAI_BASE_URL="https://api.hackwithclaude.com/v1"' >> ~/.zshrc
+echo 'export OPENAI_API_KEY="YOUR_HACKWITHCLAUDE_API_KEY"' >> ~/.zshrc
+source ~/.zshrc
+
+# For Bash:
+# Replace ~/.zshrc with ~/.bashrc in the commands above
+# and run: source ~/.bashrc
+```
+
+**Claude Code Configuration (Anthropic-compatible endpoint required):**
+
+```bash
+# For Zsh:
+echo 'export ANTHROPIC_BASE_URL="YOUR_ANTHROPIC_COMPATIBLE_BASE_URL"' >> ~/.zshrc
+echo 'export ANTHROPIC_AUTH_TOKEN="YOUR_HACKWITHCLAUDE_API_KEY"' >> ~/.zshrc
+echo 'export ANTHROPIC_MODEL="YOUR_SUPPORTED_MODEL_ID"' >> ~/.zshrc
+echo 'export CLAUDE_CODE_USE_AUTH_TOKEN="true"' >> ~/.zshrc
+source ~/.zshrc
+
+# For Bash:
+# Replace ~/.zshrc with ~/.bashrc in the commands above
+# and run: source ~/.bashrc
+```
+## 📚 Official Documentation
+
+For supported models, API endpoints, authentication and configuration instructions:
+
+🔗 [HackWithClaude Official API Documentation](https://hackwithclaude.com/dashboard/docs)
 
