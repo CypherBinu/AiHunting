@@ -16,6 +16,7 @@ Replace `example.com` only with a confirmed in-scope domain. Search results are 
 
 ### Potentially sensitive extensions
 ```text
+site:example[.]com ext:log | ext:txt | ext:conf | ext:cnf | ext:ini | ext:env | ext:sh | ext:bak | ext:backup | ext:swp | ext:old | ext:~ | ext:git | ext:svn | ext:htpasswd | ext:htaccess | ext:json
 site:example.com ext:log
 site:example.com ext:txt
 site:example.com ext:conf
@@ -66,6 +67,25 @@ site:example.com intitle:"index of" "dump"
 site:example.com intitle:"index of" "sql"
 site:example.com intitle:"index of" ".git"
 site:example.com intitle:"index of" ".svn"
+site:target.com filetype:pdf "confidential"
+site:target.com filetype:doc "restricted"
+filetype:sql site:target.com
+ext:dbf OR ext:mdb
+filetype:log "error"
+filetype:log "password"
+ext:log "Full stack trace"
+site:target.com ext:bak OR ext:old OR ext:backup
+intitle:"index of" site:target.com
+intitle:"index of" "backup"
+intitle:"index of" "parent directory"
+intitle:"index of" "backups"
+intitle:"index of" ".git"
+intitle:"index of" ".env"
+intitle:"index of" "database" OR "dump" OR "sql"
+intitle:"index of" "logs"
+intitle:"index of" "uploads"
+intitle:"index of" "files"
+intitle:"index of" "passwd" OR "password"
 ```
 
 ### Documents, logs, errors, configuration
