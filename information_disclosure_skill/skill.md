@@ -116,7 +116,8 @@ Use CDX to discover historical paths and captures. Example query patterns:
 https://web.archive.org/cdx/search/cdx?url=example.com/*&output=json&fl=timestamp,original,statuscode,mimetype,digest&filter=statuscode:200&collapse=urlkey
 https://web.archive.org/cdx/search/cdx?url=*.example.com/*&output=json&fl=timestamp,original,statuscode,mimetype,digest&collapse=urlkey
 ```
-For candidate extension filtering, retrieve a limited URL inventory and filter locally for `.env`, `.log`, `.conf`, `.ini`, `.bak`, `.backup`, `.old`, `.sql`, `.zip`, `.json`, `.yml`, `.yaml`, `.map`, `.git`, and `.svn`. CDX query/filter syntax and wildcard behavior may vary; consult current Internet Archive documentation.
+Sometime wayback cdx show 500 server issue if its show try untail you fetch the file.
+For candidate extension filtering, retrieve a limited URL inventory and filter locally for `.env`, `.log`, `.conf`, `.ini`, `.bak`, `.backup`, `.old`, `.sql`, `.zip`, `.json`, `.yml`, `.yaml`, `.map`,`.pdf`, `.git`, and `.svn`. CDX query/filter syntax and wildcard behavior may vary; consult current Internet Archive documentation.
 
 Process:
 1. Start with narrow queries and sensible limits/pagination.
@@ -188,22 +189,136 @@ Use only sources allowed by policy; prefer existing local output over repeated c
 - **Application/API:** inspect routes discovered through authorized app use, docs, or supplied traffic. Look for sensitive fields returned without expected authorization, verbose diagnostics, private tenant data, internal IDs, and debug fields. Use only own authorized accounts or program fixtures; never enumerate other users.
 - **Document metadata:** inspect minimum metadata for GPS, usernames, authors, internal paths, comments, revision history, and embedded properties. Contextualize impact; metadata alone may be informational.
 
-## 7. Safe verification
-For each candidate:
-1. Confirm exact host/path is in scope.
-2. Distinguish search-only, archive-only, and current evidence.
-3. If allowed, make one minimal read-only request initially; record status, content type, redirects, and relevant headers.
-4. Inspect only a small necessary excerpt.
-5. Determine whether content is non-public and materially sensitive.
-6. Check whether access is intended; do not bypass controls beyond policy.
-7. Explain realistic impact without using secrets or accessing additional data.
-8. Keep evidence reproducible and sanitized.
-9. Deduplicate by root cause.
-10. Assign status and explain the reasoning.
 
-Do not open/read a secret-bearing file just to prove it. Prefer headers, metadata, minimal redacted excerpts, or access behavior. If even a small excerpt risks exposing personal/highly sensitive data, stop and report only location and access behavior.
+## 6.1 Sensitive Directory & File Fuzzing
 
-## 8. False-positive reduction
+Use authorized, low-noise content discovery to identify potentially exposed sensitive directories and files on explicitly in-scope assets. This method extends the existing passive discovery workflow; it does not replace any existing method.
+
+### Candidate path categories
+
+Use small, relevant wordlists informed by existing recon results, historical URLs, observed technologies, and authorized application traffic.
+
+**Configuration and environment files**
+```text
+.env
+.env.bak
+.env.old
+config.json
+config.yml
+settings.py
+application.properties
+web.config
+```
+
+**Backups and database artifacts**
+```text
+backup.zip
+backup.tar.gz
+database.sql
+database.sql.gz
+db.bak
+dump.sql
+site-backup.zip
+```
+
+**Logs and diagnostics**
+```text
+error.log
+debug.log
+access.log
+app.log
+debug
+trace
+```
+
+**Version control and source artifacts**
+```text
+.git/HEAD
+.git/config
+.svn/entries
+package.json
+composer.json
+webpack.config.js
+```
+
+**API documentation and development paths**
+```text
+swagger.json
+openapi.json
+api-docs
+graphql
+debug
+staging
+test
+dev
+```
+
+**Exports and build artifacts**
+```text
+export.csv
+report.pdf
+manifest.json
+*.map
+```
+
+These are candidate paths, not confirmed vulnerabilities. Choose only categories relevant to the target and permitted by the program.
+
+### Candidate sources and integration
+
+Prioritize candidate paths found in:
+- Wayback CDX historical URL inventories.
+- Google Dorks and other permitted public search results.
+- Existing `gau`, `waybackurls`, and other local URL inventories.
+- In-scope JavaScript files and source-map references.
+- Authorized application traffic and public API documentation.
+- Technology-specific observations from passive recon.
+
+Integrate this stage after passive discovery and JavaScript/source-map review, before manual validation and reporting. Deduplicate candidates and verify each hostname against the written scope before sending requests.
+
+### Content discovery with ffuf
+
+If `ffuf` or another content-discovery tool is already installed and the program permits automated requests:
+1. Confirm the target hostname and testing permissions.
+2. Select a small, category-specific wordlist.
+3. Explain the purpose of the planned command before execution.
+4. Use conservative concurrency, timeouts, and a fixed request budget.
+5. Avoid unnecessary recursion, repeated requests, or indiscriminate large wordlists.
+6. Stop if the activity exceeds program limits or exposes unexpected sensitive data.
+
+Do not install tools, change system configuration, or launch active scans without the required explicit approval.
+
+### Response analysis and false-positive controls
+
+For each candidate, review:
+- HTTP status code.
+- Response length and body fingerprint.
+- MIME type.
+- Redirect destination.
+- Wildcard responses and soft-404 behavior.
+- Authentication requirements.
+- Minimal evidence of genuinely sensitive content.
+
+A `200` response, `403` response, unusual content length, filename, or directory name alone does not establish a vulnerability. Compare candidate responses with suitable baseline responses and review promising results manually using minimal, read-only requests.
+
+### Safe verification
+
+- Verify that the resource is current and in scope.
+- Distinguish public or synthetic examples from sensitive information.
+- Do not bypass authentication or access controls.
+- Do not test discovered credentials or enumerate unrelated users.
+- Do not download databases or sensitive files in bulk.
+- Redact tokens, credentials, and personal information from evidence.
+- Keep unverified candidates under `Needs manual review`; use `Historical-only` for archive-only evidence.
+
+### Evidence ledger
+
+Record the result in the existing evidence ledger rather than creating a separate tracking system:
+
+`ID | Host | Path | Source | Scope | Status | Sensitivity | Impact | Confidence | Disposition | Evidence`
+
+Group paths that share the same root cause. Mark a finding `Confirmed` only when current, in-scope evidence establishes actual security impact.
+
+## 7. False-positive reduction
 Reject or downgrade candidates when:
 - Only a search snippet or archived capture exists.
 - Content is public documentation, synthetic test data, examples, or intentionally public.
