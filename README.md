@@ -1,4 +1,4 @@
-# 🎯 LOW COST AI HUNTING SETUP
+# 🎯  AI HUNTING SETUP
 
 Hey guys, it's **cypherbinu** 👋
 
