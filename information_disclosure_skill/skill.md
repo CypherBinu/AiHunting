@@ -51,6 +51,17 @@ site:example.com ext:xls
 site:example.com ext:xlsx
 site:example.com ext:csv
 site:example.com ext:map
+site:example.com ext:pdf
+site:*.example.com ext:pdf
+
+site:example.com ext:csv
+site:*.example.com ext:csv
+
+site:example.com (ext:pdf OR ext:csv) "invoice"
+site:*.example.com (ext:pdf OR ext:csv) "invoice"
+
+site:example.com intitle:"index of"
+site:*.example.com intitle:"index of"
 ```
 
 ### Directory indexes
@@ -127,32 +138,149 @@ Process:
 5. Mark results `Historical-only` until current exposure is separately verified under policy.
 6. An archived 200 is not proof of current exposure or sensitivity. Never republish archived secrets.
 
-## 4. VirusTotal passive enrichment
-Use the account's permitted API plan and quotas. Store keys in environment variables/secret storage; never put keys in prompts, source code, terminal logs, or reports. If the API is unavailable, skip it rather than seeking a bypass.
+## 4. GitHub and public repository discovery
+###  General secret indicators
 
-Potential sources, subject to account access:
-- Domain object metadata.
-- Direct subdomain relationships (not necessarily recursive).
-- Historical SSL certificates/certificate-associated names.
-- Related URL objects and available domain relationships.
-- Existing reputation and scan metadata.
-
-Workflow:
-1. Query the exact in-scope domain.
-2. Retrieve only relationships available to the account and relevant to asset inventory.
-3. Normalize hostnames and independently compare each against the written scope.
-4. Use results to identify forgotten/legacy hosts or candidate URLs, not to presume authorization.
-5. Do not upload private URLs, credentials, target files, or sensitive artifacts.
-6. A reputation verdict is not proof of information disclosure.
-
-Example API request pattern:
-```bash
-# Set this locally using a secret manager or environment, not a literal key in a shared script.
-export VT_API_KEY="YOUR_KEY_FROM_LOCAL_SECRET_STORE"
-curl -sS -H "x-apikey: ${VT_API_KEY}" \
-  "https://www.virustotal.com/api/v3/domains/example.com"
+``` text
+org:TARGET_ORG "api_key"
+org:TARGET_ORG "api_secret"
+org:TARGET_ORG "api_token"
+org:TARGET_ORG "client_secret"
+org:TARGET_ORG "access_token"
+org:TARGET_ORG "refresh_token"
+org:TARGET_ORG "private_key"
+org:TARGET_ORG "secret_key"
+org:TARGET_ORG "secret_access_key"
+org:TARGET_ORG "credentials"
+org:TARGET_ORG "x-api-key"
+org:TARGET_ORG "Authorization: Bearer"
 ```
-Do not commit `.env` files or shell history containing keys.
+
+###  Cloud and provider-specific indicators
+
+``` text
+org:TARGET_ORG "AWS_ACCESS_KEY_ID"
+org:TARGET_ORG "AWS_SECRET_ACCESS_KEY"
+org:TARGET_ORG "aws_access_key"
+org:TARGET_ORG "aws_secret_key"
+org:TARGET_ORG "S3_ACCESS_KEY_ID"
+org:TARGET_ORG "S3_SECRET_ACCESS_KEY"
+org:TARGET_ORG "S3_BUCKET"
+org:TARGET_ORG "GEMINI_API_KEY"
+org:TARGET_ORG "GOOGLE_API_KEY"
+org:TARGET_ORG "AIza"
+org:TARGET_ORG "HEROKU_API_KEY"
+org:TARGET_ORG "shodan_api_key"
+org:TARGET_ORG "codecov_token"
+org:TARGET_ORG "slack_token"
+org:TARGET_ORG "xoxb-"
+org:TARGET_ORG "xoxp-"
+org:TARGET_ORG "HOMEBREW_GITHUB_API_TOKEN"
+org:TARGET_ORG "ghp_"
+org:TARGET_ORG "github_pat_"
+```
+
+###  Database and application configuration
+
+``` text
+org:TARGET_ORG "DATABASE_URL"
+org:TARGET_ORG "database_password"
+org:TARGET_ORG "DB_PASSWORD"
+org:TARGET_ORG "DB_USERNAME"
+org:TARGET_ORG "WORDPRESS_DB_PASSWORD"
+org:TARGET_ORG "connectionstring"
+org:TARGET_ORG "mongodb+srv://"
+org:TARGET_ORG "postgresql://"
+org:TARGET_ORG "redis_password"
+org:TARGET_ORG "ROOT PASSWORD"
+org:TARGET_ORG "ADMIN PASSWORD"
+org:TARGET_ORG "SECRET_KEY_BASE"
+org:TARGET_ORG filename:config.json
+org:TARGET_ORG filename:settings.py
+org:TARGET_ORG filename:application.properties
+org:TARGET_ORG filename:docker-compose.yml
+org:TARGET_ORG filename:terraform.tfvars
+```
+
+###  Potentially sensitive file names
+
+Use these only within the authorized organization/repository. A filename
+match alone does not establish exposure.
+
+``` text
+org:TARGET_ORG filename:.env
+org:TARGET_ORG filename:.npmrc
+org:TARGET_ORG filename:.git-credentials
+org:TARGET_ORG filename:.netrc
+org:TARGET_ORG filename:.pgpass
+org:TARGET_ORG filename:.s3cfg
+org:TARGET_ORG filename:sftp-config.json
+org:TARGET_ORG filename:credentials
+org:TARGET_ORG filename:secrets.yml
+org:TARGET_ORG filename:deployment-config.json
+org:TARGET_ORG filename:terraform.tfstate
+org:TARGET_ORG filename:backup.sql
+org:TARGET_ORG filename:debug.log
+org:TARGET_ORG filename:wp-config.php
+org:TARGET_ORG filename:prod.secret.exs
+```
+
+### Internal endpoints and environment references
+
+``` text
+org:TARGET_ORG "internal-api"
+org:TARGET_ORG "staging"
+org:TARGET_ORG "preprod"
+org:TARGET_ORG "localhost:8080"
+org:TARGET_ORG "swagger.json"
+org:TARGET_ORG "openapi.json"
+org:TARGET_ORG "DEBUG = True"
+org:TARGET_ORG "corp" "https://"
+org:TARGET_ORG "internal" "ssh://"
+```
+
+###  GitHub Actions and CI/CD review
+
+These queries help identify workflow patterns for **configuration
+review**, not automatic proof of exploitation.
+
+``` text
+org:TARGET_ORG path:.github/workflows "pull_request_target"
+org:TARGET_ORG path:.github/workflows "workflow_run"
+org:TARGET_ORG path:.github/workflows "workflow_call"
+org:TARGET_ORG path:.github/workflows "secrets: inherit"
+org:TARGET_ORG path:.github/workflows "id-token: write"
+org:TARGET_ORG path:.github/workflows "self-hosted"
+org:TARGET_ORG path:.github/workflows "ACTIONS_STEP_DEBUG"
+org:TARGET_ORG path:.devcontainer "remoteEnv"
+org:TARGET_ORG path:.devcontainer "containerEnv"
+org:TARGET_ORG path:.devcontainer "postCreateCommand"
+```
+
+
+
+###  Target-domain references
+
+``` text
+org:TARGET_ORG "TARGET_DOMAIN"
+org:TARGET_ORG "TARGET_DOMAIN" "api_key"
+org:TARGET_ORG "TARGET_DOMAIN" "client_secret"
+org:TARGET_ORG "TARGET_DOMAIN" "DATABASE_URL"
+org:TARGET_ORG "TARGET_DOMAIN" "internal-api"
+repo:TARGET_ORG/TARGET_REPO "TARGET_DOMAIN"
+```
+## How to run
+
+1.  Open https://github.com/search and select **Code**.
+2.  Paste one query from the sections below.
+3.  Review the repository, path, commit, and surrounding context.
+4.  Classify each result as `potential secret`,
+    `configuration exposure`, `internal endpoint`, `sensitive data`, or
+    `false positive`.
+
+5.  Replace `TARGET_DOMAIN` with the exact in-scope domain. These are GitHub
+Code Search queries, not Google `site:` dorks. 
+6.  ignore the test and demo results.
 
 ## 5. urlscan.io historical search
 Search existing scans before considering any new submission. Consult current API documentation for fields, quotas, access tiers, and visibility.
